@@ -14,18 +14,18 @@ export async function sendMessage(req: Request, res: Response): Promise<void> {
   try {
     // email to yourself
     await sendEmailWrapper(
-      `${message.sender} <onboarding@resend.dev>`,
+      `${message.sender} <noreply@${process.env.PUBLIC_DOMAIN}>`,
       String(process.env.PUBLIC_EMAIL),
-      message.subject,
+      `${message.subject} - ${new Date().toLocaleDateString('en-GB')}`,
       `${message.email}<br><br>
       ${message.body}`
     );
 
     // email to the sender
     await sendEmailWrapper(
-      `${process.env.PUBLIC_NAME} <onboarding@resend.dev>`,
+      `${process.env.PUBLIC_NAME} <noreply@${process.env.PUBLIC_DOMAIN}>`,
       message.email,
-      String(process.env.PUBLIC_NAME),
+      `${String(process.env.PUBLIC_NAME)} - ${new Date().toLocaleDateString('en-GB')}`,
       `Hi ${message.sender},<br><br>
       Thank you for reaching out! Your message has been successfully sent, and I'll get back to you shortly.<br><br>
       Best regards,<br>
