@@ -26,13 +26,14 @@ export async function sendMessage(req: Request, res: Response): Promise<void> {
       `${process.env.PUBLIC_NAME} <noreply@${process.env.PUBLIC_DOMAIN}>`,
       message.email,
       `${String(process.env.PUBLIC_NAME)} - ${new Date().toLocaleDateString('en-GB')}`,
-      `Hi ${message.sender},<br><br>
+      `<p>Hi ${message.sender},
       Thank you for reaching out! Your message has been successfully sent, and I'll get back to you shortly.<br><br>
       Best regards,<br>
-      ${process.env.PUBLIC_NAME}<br><br>
-      <strong>Your message:</strong><br>
-      <p><strong>Subject:</strong> ${message.subject}</p><br>
-      <p><strong>Body:</strong><br>${message.body}</p><br><br>
+      ${process.env.PUBLIC_NAME}</p>
+      <br>
+      <p><strong>Subject:</strong><br>${message.subject}</p>
+      <p><strong>Body:</strong><br>${message.body}</p>
+      <br>
       <p style="color:gray; font-size:0.9em;">
       Please do not reply directly to this message. Instead, feel free to contact me at <a href="mailto:arcedo.marc@gmail.com">arcedo.marc@gmail.com</a>.
       </p>`
